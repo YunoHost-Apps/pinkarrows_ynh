@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Pink Arrows YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://dash.yunohost.org/appci/app/pinkarrows_ynh) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
 
 [![Instalatu Pink Arrows YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
 

@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # Pink Arrows para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://dash.yunohost.org/appci/app/pinkarrows_ynh) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
 
 [![Instalar Pink Arrows con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
 
@@ -37,7 +37,7 @@ It runs in-browser and does not store any user data on the server (apart from th
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

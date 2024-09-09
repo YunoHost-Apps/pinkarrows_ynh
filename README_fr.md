@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Pink Arrows pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://dash.yunohost.org/appci/app/pinkarrows_ynh) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
 
 [![Installer Pink Arrows avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
 

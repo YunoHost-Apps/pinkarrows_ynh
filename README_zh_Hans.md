@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Pink Arrows
 
-[![集成程度](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://dash.yunohost.org/appci/app/pinkarrows_ynh) ![工作状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
 
 [![使用 YunoHost 安装 Pink Arrows](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
 
