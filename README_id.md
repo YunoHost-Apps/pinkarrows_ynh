@@ -5,9 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Pink Arrows untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![Tingkat integrasi](https://dash.yunohost.org/integration/pinkarrows.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/pinkarrows.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/pinkarrows.maintain.svg)
 
-[![Pasang Pink Arrows dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
+[![Pasang Pink Arrows dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows)
 
 *[Baca README ini dengan bahasa yang lain.](./ALL_README.md)*
 
@@ -32,19 +32,19 @@ It runs in-browser and does not store any user data on the server (apart from th
 ## Dokumentasi dan sumber daya
 
 - Depot kode aplikasi hulu: <https://github.com/robbalian/pinkarrows>
-- Gudang YunoHost: <https://apps.yunohost.org/app/pinkarrows_ynh>
-- Laporkan bug: <https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/issues>
+- Gudang YunoHost: <https://apps.yunohost.org/app/pinkarrows>
+- Laporkan bug: <https://github.com/YunoHost-Apps/pinkarrows_ynh/issues>
 
 ## Info developer
 
-Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing).
+Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing).
 
 Untuk mencoba branch `testing`, silakan dilanjutkan seperti:
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 atau
-sudo yunohost app upgrade pinkarrows_ynh -u https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app upgrade pinkarrows -u https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 ```
 
 **Info lebih lanjut mengenai pemaketan aplikasi:** <https://yunohost.org/packaging_apps>

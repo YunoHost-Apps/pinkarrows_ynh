@@ -5,9 +5,9 @@ EZ editatu eskuz.
 
 # Pink Arrows YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/pinkarrows.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/pinkarrows.maintain.svg)
 
-[![Instalatu Pink Arrows YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
+[![Instalatu Pink Arrows YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows)
 
 *[Irakurri README hau beste hizkuntzatan.](./ALL_README.md)*
 
@@ -32,19 +32,19 @@ It runs in-browser and does not store any user data on the server (apart from th
 ## Dokumentazioa eta baliabideak
 
 - Jatorrizko aplikazioaren kode-gordailua: <https://github.com/robbalian/pinkarrows>
-- YunoHost Denda: <https://apps.yunohost.org/app/pinkarrows_ynh>
-- Eman errore baten berri: <https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/issues>
+- YunoHost Denda: <https://apps.yunohost.org/app/pinkarrows>
+- Eman errore baten berri: <https://github.com/YunoHost-Apps/pinkarrows_ynh/issues>
 
 ## Garatzaileentzako informazioa
 
-Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing).
+Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing).
 
 `testing` abarra probatzeko, ondorengoa egin:
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 edo
-sudo yunohost app upgrade pinkarrows_ynh -u https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app upgrade pinkarrows -u https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 ```
 
 **Informazio gehiago aplikazioaren paketatzeari buruz:** <https://yunohost.org/packaging_apps>
