@@ -27,7 +27,7 @@ grep -o 'https://cdn.jsdelivr.net[^"]*' $index_html_path | sort -u | while read 
     if [ ! -f "$install_dir/$filepath" ]; then
         ynh_safe_rm "$(echo $filepath | cut -d'/' -f-3 | cut -d'@' -f1)@*"                          # e.g. src/libs/bootstrap@*         
         mkdir -p "$(dirname $install_dir/$filepath)"                                                # make sure directory exists
-        curl -o "$install_dir/$filepath" $url
+        curl -s -o "$install_dir/$filepath" $url
     fi
     ynh_replace --match="$url" --replace="$filepath" --file="$index_html_path"
 done
@@ -38,7 +38,7 @@ grep -o 'https://cdnjs.cloudflare.com[^"]*' $index_html_path | sort -u | while r
     if [ ! -f "$install_dir/$filepath" ]; then                                     
         ynh_safe_rm "$(echo $filepath | cut -d'/' -f-3)/*"                                          # e.g. src/libs/jquery/*
         mkdir -p "$(dirname $install_dir/$filepath)"                                                # make sure directory exists
-        curl -o "$install_dir/$filepath" $url
+        curl -s -o "$install_dir/$filepath" $url
     fi
     ynh_replace --match="$url" --replace="$filepath" --file="$index_html_path"
 done
