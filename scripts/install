@@ -15,6 +15,36 @@ ynh_script_progression "Setting up source files..."
 ynh_setup_source --dest_dir="$install_dir"
 chown -R "$app:www-data" "$install_dir"
 
+# Replace upstream canonical link with YNH app domain's  
+ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file=index.html
+
+# Download remote assets locally and subsitute remote paths with local ones
+## cdn.jsdelivr.net URLs
+grep -o 'https://cdn.jsdelivr.net[^"]*' index.html | while read -r url ; do    		# e.g. https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
+    filepath="src/libs/$(echo $url | cut -d'/' -f5-)"                           	# e.g. src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
+    if [ ! -f "$install_dir/$filepath" ]; then
+        rm -rf "$(echo $filepath | cut -d'/' -f-3 | cut -d'@' -f1)@*"           	# e.g. src/libs/bootstrap@* 
+        curl -o "$install_dir/$filepath" $url
+    fi
+    ynh_replace --match="$url" --replace="$filepath" --file=index.html
+done
+
+## cdnjs.cloudflare.com URLs
+grep -o 'https://cdnjs.cloudflare.com[^"]*' index.html | while read -r url ; do     # e.g. https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
+    filepath="src/libs/$(echo $url | cut -d'/' -f6-)"                               # e.g. src/libs/jquery/3.5.1/jquery.min.js
+    if [ ! -f "$install_dir/$filepath" ]; then                                     
+        rm -rf "$(echo $filepath | cut -d'/' -f-3)/*"                               # e.g. src/libs/jquery/*
+        curl -o "$install_dir/$filepath" $url
+    fi
+    ynh_replace --match="$url" --replace="$filepath" --file=index.html
+done
+
+# Remove script block containing reference to posthog (analytics)
+sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' index.html		# '/<script>/,/<\/script>/' specifies the range of lines to parse (address 1 to address 2)
+																							# '{ /posthog/!b;' jumps to the end of the block if the line does not contain the string 'posthog'.
+																							# ':a; N; /<\/script>/!ba;' is a loop that appends the next line to the pattern space until it finds '</script>'. Without it, the command would leave some lines the block not containing 'posthog'.
+																							# 'd; }' deletes the entire block.
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
