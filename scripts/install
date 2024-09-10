@@ -20,6 +20,11 @@ index_html_path="$install_dir/index.html"
 # Replace upstream canonical link with YNH app domain's  
 ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file=$index_html_path
 
+#test
+mkdir -p "$install_dir/src/libs/bootstrap@2.3.4"
+mkdir -p "$install_dir/src/libs/bootstrap@2.7.4"
+mkdir -p "$install_dir/src/libs/bootstrap@2.7.6"
+
 # Download remote assets locally and subsitute remote paths with local ones
 ## cdn.jsdelivr.net URLs
 grep -o 'https://cdn.jsdelivr.net[^"]*' $index_html_path | sort -u | while read -r url ; do         # e.g. https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
