@@ -5,9 +5,9 @@
 
 # YunoHost 上的 Pink Arrows
 
-[![集成程度](https://dash.yunohost.org/integration/pinkarrows_ynh.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows_ynh/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows_ynh.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/pinkarrows.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/pinkarrows.maintain.svg)
 
-[![使用 YunoHost 安装 Pink Arrows](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows_ynh)
+[![使用 YunoHost 安装 Pink Arrows](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows)
 
 *[阅读此 README 的其它语言版本。](./ALL_README.md)*
 
@@ -32,19 +32,19 @@ It runs in-browser and does not store any user data on the server (apart from th
 ## 文档与资源
 
 - 上游应用代码库： <https://github.com/robbalian/pinkarrows>
-- YunoHost 商店： <https://apps.yunohost.org/app/pinkarrows_ynh>
-- 报告 bug： <https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/issues>
+- YunoHost 商店： <https://apps.yunohost.org/app/pinkarrows>
+- 报告 bug： <https://github.com/YunoHost-Apps/pinkarrows_ynh/issues>
 
 ## 开发者信息
 
-请向 [`testing` 分支](https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing) 发送拉取请求。
+请向 [`testing` 分支](https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing) 发送拉取请求。
 
 如要尝试 `testing` 分支，请这样操作：
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 或
-sudo yunohost app upgrade pinkarrows_ynh -u https://github.com/YunoHost-Apps/pinkarrows_ynh_ynh/tree/testing --debug
+sudo yunohost app upgrade pinkarrows -u https://github.com/YunoHost-Apps/pinkarrows_ynh/tree/testing --debug
 ```
 
 **有关应用打包的更多信息：** <https://yunohost.org/packaging_apps>

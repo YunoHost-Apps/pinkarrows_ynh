@@ -1,5 +1,5 @@
 packaging_format = 2
-id = "pinkarrows_ynh"
+id = "pinkarrows"
 name = "Pink Arrows"
 description.en = "Lightweight images/screenshot annotation tool"
 description.fr = "Outil léger pour l'annotation d'images ou de captures d'écran"
@@ -18,9 +18,9 @@ architectures = "all"
 multi_instance = true
 ldap = "not_relevant"
 sso = "not_relevant"
-disk = "2M"
-ram.build = "2M"
-ram.runtime = "2M"
+disk = "5M"
+ram.build = "60M"
+ram.runtime = "20M"
 
 [install]
     [install.domain]
