@@ -35,7 +35,7 @@ find "$install_dir/src/libs/emojibase" -mindepth 1 \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data" \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \
-                                       -delete
+                                       -print
 ## Change endings in .raw.json to .json to match the CDN's file naming
 find "$install_dir/src/libs/emojibase/packages/data/en/*" -type f -name "*raw.json" -exec rename 's/raw\.json/json/' {} \;
 
