@@ -17,8 +17,9 @@ ynh_script_progression "Setting up source files..."
 ynh_setup_source --dest_dir="$install_dir"
 
 # Libs picmo (no CDN)
-ynh_setup_source --dest-dir="$install_dir/src/libs/picmo" --source_id="picmo"
-ynh_setup_source --dest-dir="$install_dir/src/libs/picmo_popup_picker" --source_id="picmo-popup-picker"
+mkdir -p 
+ynh_setup_source --dest_dir="$install_dir/src/libs/picmo" --source_id="picmo"
+ynh_setup_source --dest_dir="$install_dir/src/libs/picmo_popup_picker" --source_id="picmo-popup-picker"
 #~ find "$install_dir/src/lib/picmo*" -mindepth 1 
                                    #~ -not -path '$install_dir/src/libs/picmo*/packages' 
                                    #~ -not -path '$install_dir/src/libs/picmo*/packages/popup-picker' 
@@ -28,7 +29,7 @@ ynh_setup_source --dest-dir="$install_dir/src/libs/picmo_popup_picker" --source_
                                    #~ -delete # keep only 'picmo-5.8.5/packages/popup-picker/*' and 'picmo-5.8.5/packages/picmo/*'   
 
 # Lib emojibase (no CDN)
-ynh_setup_source --dest-dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
+ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
 ## Keep only 'emojibase-emojibase-data-15.3.2/packages/data/en/packages/data/en/*'
 find "$install_dir/src/lib/emojibase" -mindepth 1 
                                    -not -path '$install_dir/src/libs/emojibase/packages/data/en' 
