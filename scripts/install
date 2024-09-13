@@ -30,14 +30,14 @@ ynh_setup_source --dest_dir="$install_dir/src/libs/picmo_popup_picker" --source_
 # Lib emojibase (no CDN)
 ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
 ## Keep only 'emojibase-emojibase-data-15.3.2/packages/data/en/packages/data/en/*'
-find "$install_dir/src/libs/emojibase" -mindepth 1 \
-                                       -not -path "$install_dir/src/libs/emojibase/packages" \
-                                       -not -path "$install_dir/src/libs/emojibase/packages/data" \
-                                       -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
-                                       -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \
-                                       -print
+#~ find "$install_dir/src/libs/emojibase" -mindepth 1 \
+                                       #~ -not -path "$install_dir/src/libs/emojibase/packages" \
+                                       #~ -not -path "$install_dir/src/libs/emojibase/packages/data" \
+                                       #~ -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
+                                       #~ -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \
+                                       #~ -print
 ## Change endings in .raw.json to .json to match the CDN's file naming
-find '/var/www/pinkarrows/src/libs/emojibase/packages/data/en/*' -type f -name "*raw.json" -exec rename 's/raw\.json/json/' {} \;
+#~ find "$install_dir/src/libs/emojibase/packages/data/en/*" -type f -name "*raw.json" -exec rename 's/raw\.json/json/' {} \;
 
 # Modify index.html
 index_html_path="$install_dir/index.html"
