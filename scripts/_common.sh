@@ -18,6 +18,11 @@ pa_ynh_download_remote_assets() {
     local source_file
     ynh_handle_getopts_args "$@"
     # ===========================================
+    echo "url: $url_format"
+    echo "fp: $cmd_filepath"
+    echo "pw: $cmd_path_wildcard"
+    echo "ev: $event"
+	echo "source_file: $source_file"
 	grep -o $url_format $source_file | sort -u | while read -r url ; do
 		filepath="src/libs/$(echo $url | $cmd_filepath)"
 		# Download remote assets 

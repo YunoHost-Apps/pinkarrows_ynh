@@ -54,7 +54,7 @@ pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*' \     
 
 pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*' \                         # https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
                               --cmd_filepath='cut -d/ -f6-' \                                            # src/libs/jquery/3.5.1/jquery.min.js
-                              --cmd_path_wildcard='$(echo $filepath | cit -d/ -f-3)/*' \                 # src/libs/jquery/*
+                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3)/*' \                 # src/libs/jquery/*
                               --event="$(basename $BASH_SOURCE)" \                                       # script's filename
                               --source_file="$index_html_path"
 
