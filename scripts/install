@@ -30,9 +30,9 @@ ynh_setup_source --dest_dir="$install_dir/src/libs/picmo_popup_picker" --source_
 # Lib emojibase (no CDN)
 ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
 ## Keep only 'emojibase-emojibase-data-15.3.2/packages/data/en/packages/data/en/*'
-find "$install_dir/src/libs/emojibase" -mindepth 1 
-                                   -not -path "$install_dir/src/libs/emojibase/packages/data/en" 
-                                   -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" 
+find "$install_dir/src/libs/emojibase" -mindepth 1 \
+                                   -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
+                                   -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \ 
                                    -delete 
 ## Change endings in .raw.json to .json to match the CDN's file naming
 find "$install_dir/src/libs/emojibase/packages/data/en/*" -type f -name "*raw.json" -exec rename 's/raw\.json/json/' {} \;
@@ -44,14 +44,14 @@ index_html_path="$install_dir/index.html"
 ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file="$index_html_path"
 
 ## Download remote assets locally and subsitute remote paths with local ones
-pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*'                              # https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
-                              --cmd_filepath='cut -d/ -f5-'                                            # src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
-                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*'   # src/libs/bootstrap@*
+pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*' \                              # https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
+                              --cmd_filepath='cut -d/ -f5-' \                                            # src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
+                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*' \   # src/libs/bootstrap@*
                               --source_file="$index_html_path"
 
-pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*'                         # https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
-                              --cmd_filepath='cut -d/ -f6-'                                            # src/libs/jquery/3.5.1/jquery.min.js
-                              --cmd_path_wildcard='$(echo $filepath | cit -d/ -f-3)/*'                 # src/libs/jquery/*
+pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*' \                     	 # https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
+                              --cmd_filepath='cut -d/ -f6-' \                                            # src/libs/jquery/3.5.1/jquery.min.js
+                              --cmd_path_wildcard='$(echo $filepath | cit -d/ -f-3)/*' \                 # src/libs/jquery/*
                               --source_file="$index_html_path"
 
 ## Remove script block containing reference to posthog (analytics)
