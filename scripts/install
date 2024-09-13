@@ -17,7 +17,6 @@ ynh_script_progression "Setting up source files..."
 ynh_setup_source --dest_dir="$install_dir"
 
 # Libs picmo (no CDN)
-mkdir -p 
 ynh_setup_source --dest_dir="$install_dir/src/libs/picmo" --source_id="picmo"
 ynh_setup_source --dest_dir="$install_dir/src/libs/picmo_popup_picker" --source_id="picmo-popup-picker"
 #~ find "$install_dir/src/lib/picmo*" -mindepth 1 
