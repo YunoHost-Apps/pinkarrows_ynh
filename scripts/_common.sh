@@ -10,14 +10,14 @@
 #
 pa_ynh_download_remote_assets() {
     # ============ Argument parsing =============
-    local -A args_array=([u]=url_format= [f]=cmd_filepath= [k]=cmd_path_wildcard= [s]=source_file)
+    local -A args_array=([u]=url_format= [f]=cmd_filepath= [k]=cmd_path_wildcard= [e]=event= [s]=source_file=)
     local url_format
     local cmd_filepath
     local cmd_path_wildcard
+    local event
     local source_file
     ynh_handle_getopts_args "$@"
     # ===========================================
-	event=$(basename $BASH_SOURCE) # script's filename
 	grep -o $url_format $source_file | sort -u | while read -r url ; do
 		filepath="src/libs/$(echo $url | $cmd_filepath)"
 		# Download remote assets 
