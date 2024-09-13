@@ -12,36 +12,83 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 ynh_script_progression "Setting up source files..."
-ynh_setup_source --dest_dir="$install_dir"
-chown -R "$app:www-data" "$install_dir"
 
+# Pink Arrows source
+ynh_setup_source --dest_dir="$install_dir"
+
+# Libs picmo (no CDN)
+ynh_setup_source --dest-dir="$install_dir/src/libs/picmo" --source_id="picmo"
+ynh_setup_source --dest-dir="$install_dir/src/libs/picmo_popup_picker" --source_id="picmo-popup-picker"
+#~ find "$install_dir/src/lib/picmo*" -mindepth 1 
+                                   #~ -not -path '$install_dir/src/libs/picmo*/packages' 
+                                   #~ -not -path '$install_dir/src/libs/picmo*/packages/popup-picker' 
+                                   #~ -not -path '$install_dir/src/libs/picmo*/packages/picmo' 
+                                   #~ -not -path '$install_dir/src/libs/picmo*/packages/popup-picker/*' 
+                                   #~ -not -path '$install_dir/src/libs/picmo*/packages/picmo/*' 
+                                   #~ -delete # keep only 'picmo-5.8.5/packages/popup-picker/*' and 'picmo-5.8.5/packages/picmo/*'   
+
+# Lib emojibase (no CDN)
+ynh_setup_source --dest-dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
+## Keep only 'emojibase-emojibase-data-15.3.2/packages/data/en/packages/data/en/*'
+find "$install_dir/src/lib/emojibase" -mindepth 1 
+                                   -not -path '$install_dir/src/libs/emojibase/packages/data/en' 
+                                   -not -path '$install_dir/src/libs/emojibase/packages/data/en/*' 
+                                   -delete 
+## Change endings in .raw.json to .json to match the CDN's file naming
+find "$install_dir/src/lib/emojibase/packages/data/en/*" -type f -name "*raw.json" -exec rename 's/raw\.json/json/' {} \;
+
+# Modify index.html
 index_html_path="$install_dir/index.html"
 
-# Replace upstream canonical link with YNH app domain's  
+## Replace upstream canonical link with YNH app domain's  
 ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file="$index_html_path"
 
-# Download remote assets locally and subsitute remote paths with local ones
-## cdn.jsdelivr.net URLs
-grep -o 'https://cdn.jsdelivr.net[^"]*' $index_html_path | sort -u | while read -r url ; do         # e.g. https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
-    filepath="src/libs/$(echo $url | cut -d'/' -f5-)"                                               # e.g. src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
-    mkdir -p "$(dirname $install_dir/$filepath)"                                                    # make sure directory exists
-    curl -s -o "$install_dir/$filepath" $url
-    ynh_replace --match="$url" --replace="$filepath" --file="$index_html_path"
-done
+## Download remote assets locally and subsitute remote paths with local ones
+pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*'                              # https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
+                              --cmd_filepath='cut -d/ -f5-'                                            # src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
+                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*'   # src/libs/bootstrap@*
+                              --source_file="$index_html_path"
 
-## cdnjs.cloudflare.com URLs
-grep -o 'https://cdnjs.cloudflare.com[^"]*' $index_html_path | sort -u | while read -r url ; do     # e.g. https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
-    filepath="src/libs/$(echo $url | cut -d'/' -f6-)"                                               # e.g. src/libs/jquery/3.5.1/jquery.min.js
-    mkdir -p "$(dirname $install_dir/$filepath)"                                                    # make sure directory exists
-    curl -s -o "$install_dir/$filepath" $url
-    ynh_replace --match="$url" --replace="$filepath" --file="$index_html_path"
-done
+pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*'                         # https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
+                              --cmd_filepath='cut -d/ -f6-'                                            # src/libs/jquery/3.5.1/jquery.min.js
+                              --cmd_path_wildcard='$(echo $filepath | cit -d/ -f-3)/*'                 # src/libs/jquery/*
+                              --source_file="$index_html_path"
 
-# Remove script block containing reference to posthog (analytics)
+## Remove script block containing reference to posthog (analytics)
 sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $index_html_path   # '/<script>/,/<\/script>/' specifies the range of lines to parse (address 1 to address 2)
                                                                                                 # '{ /posthog/!b;' jumps to the end of the block if the line does not contain the string 'posthog'.
                                                                                                 # ':a; N; /<\/script>/!ba;' is a loop that appends the next line to the pattern space until it finds '</script>'. Without it, the command would leave some lines the block not containing 'posthog'.
                                                                                                 # 'd; }' deletes the entire block.
+
+# Modify JS file & libs to use local assets only
+ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace="$install_dir/src/libs/picmo_popup_picker/dist/index.js" --file="$install_dir/src/script.js"
+ynh_replace --match='from "picmo";' --replace="from \"$install_dir/src/libs/picmo/dist/index.js\"" --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace="$install_dir/src/libs/emojibase/packages/data/en/" --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace="$install_dir/src/libs/emojibase/packages/data/en/" --file="$install_dir/src/libs/picmo/dist/index.js"
+
+## Download remote assets locally and subsitute remote paths with local ones
+#~ pa_ynh_download_remote_assets --url_format="https://unpkg.com[^']*"                             # https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module
+                              #~ --cmd_filepath='cut -d/ -f4-'                                     # src/libs/@picmo/popup-picker@latest/dist/index.js?module
+                              #~ --cmd_path_wildcard='$(echo $filepath | cut -d- -f-1)*'           # src/libs/@picmo/popup*
+                              #~ --source_file="$script_js_path"
+                
+#~ # Modify src/libs/@picmo/popup-picker@latest/dist/index.js?module
+#~ pa_ynh_download_remote_assets --url_format="https://unpkg.com[^']*"                                 # https://unpkg.com/picmo@^5.8.0?module redirecting to https://unpkg.com/picmo@5.8.5/dist/index.js?module
+                              #~ --cmd_filepath="cut -d/ -f4- | sed 's/$/\/dist\/index.js?module/'"    # src/libs/picmo@^5.8.0?module/dist/index.js?module
+                              #~ --cmd_path_wildcard='$(echo $filepath | cut -d- -f-1)*'               # src/libs/picmo@*
+                              #~ --source_file="$script_js_path"
+
+# Modify src/libs/picmo@^5.8.0?module/dist/index.js?module
+#~ curl -L -s -o "$install_dir/$filepath" https://cdn.jsdelivr.net/npm/emojibase-data@latest/en/data.json
+#~ curl -L -s -o "$install_dir/$filepath" https://cdn.jsdelivr.net/npm/emojibase-data@latest/en/messages.json
+#~ ynh_replace --match="https://cdn.jsdelivr.net/npm/emojibase-data" --replace="src/libs/emojibase-data" --file="$install_dir/src/libs/picmo@^5.8.0?module/dist/index.js?module"
+
+#~ https://cdn.jsdelivr.net/npm/emojibase-data@latest/en/messages.json
+#~ /src/script.js -> https://unpkg.com/@picmo/popup-picker@5.8.5/dist/index.js?module
+#~ /src/libs/picmo/popup-picker@5.8.5/dist/index.js -> https://unpkg.com/picmo@5.8.5/dist/index.js?module
+#~ /src/libs/picmo/picmo@5.8.5/dist/index.js -> https://cdn.jsdelivr.net/npm/emojibase-data@latest/en/ (messages.json & data.json at least)
+
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION

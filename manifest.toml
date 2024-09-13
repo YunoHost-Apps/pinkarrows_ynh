@@ -44,6 +44,20 @@ ram.runtime = "20M"
     autoupdate.upstream = "https://github.com/robbalian/pinkarrows"
     autoupdate.strategy = "latest_github_commit"
 
+    [resources.sources.picmo]
+    url = "https://registry.npmjs.org/picmo/-/picmo-5.8.5.tgz"
+    sha256 = "1c2faee37bbd7f33b1a040955312318c36ff77fd7857c3649ee427ddeb6653b5"
+    
+    [resources.sources.picmo-popup-picker]
+    url = "https://registry.npmjs.org/@picmo/popup-picker/-/popup-picker-5.8.5.tgz"
+    sha256 = "dfa3f631df9b96b5073a620876a4147175e3222af8d652f78c0960caf83bc57a"
+    
+    [resources.sources.emojibase]
+    url = "https://github.com/milesj/emojibase/archive/refs/tags/emojibase-data@15.3.2.zip"
+    sha256 = "9d4f5509d1ae917b48c147f962a5309d6b74833ae24193443d5200609da7f4ad"
+    autoupdate.upstream = "https://github.com/milesj/emojibase"
+    autoupdate.strategy = "latest_github_release"
+    
     [resources.system_user]
 
     [resources.install_dir]
