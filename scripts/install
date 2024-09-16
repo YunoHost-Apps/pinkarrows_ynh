@@ -75,7 +75,7 @@ sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $in
 
 # Modify JS file & libs to use local assets only
 ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
-echo -e "import emojiData from './src/libs/emojibase/packages/data/en/data.json';\nimport messages from './src/libs/emojibase/packages/data/en/messages.json';\n$(cat "$install_dir/src/script.js")" > "$install_dir/src/script.js"
+echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json';\nimport messages from './libs/emojibase/packages/data/en/messages.json';\n$(cat "$install_dir/src/script.js")" > "$install_dir/src/script.js"
 sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 ynh_replace --match='from "picmo";' --replace='from "../../picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
