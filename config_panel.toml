@@ -9,6 +9,6 @@ name = "Pink Arrows settings"
         [main.customization.watermark]
         ask = "Watermark"
         type = "file"
-        accept = ".png"
+        accept = [".png"]
         help = "Fill with your own watermark (when the box \"watermark\" is checked, it will be displayed on the bottom right of each picture saved in Pink Arrows)."
         bind = "__INSTALL_DIR__/assets/watermark.png"
