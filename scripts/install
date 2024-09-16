@@ -43,7 +43,7 @@ ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emoji
 index_html_path="$install_dir/index.html"
 
 ## Replace upstream canonical link with YNH app domain's  
-ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file="$index_html_path"
+ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain/$path" --file="$index_html_path"
 
 ## Download remote assets locally and subsitute remote paths with local ones
 
@@ -51,7 +51,7 @@ ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --f
   #      url format: https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
   # filepath format: src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
   # wildcard format: src/libs/bootstrap@*
-pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*' \
+pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^"]*' \
                               --cmd_filepath='cut -d/ -f5-' \
                               --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*' \
                               --event="$(basename $BASH_SOURCE)" \
@@ -74,10 +74,10 @@ sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $in
                                                                                                 # 'd; }' deletes the entire block.
 
 # Modify JS file & libs to use local assets only
-ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace="$install_dir/src/libs/picmo_popup_picker/dist/index.js" --file="$install_dir/src/script.js"
-ynh_replace --match='from "picmo";' --replace="from \"$install_dir/src/libs/picmo/dist/index.js\"" --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace="$install_dir/src/libs/emojibase/packages/data/en/" --file="$install_dir/src/libs/picmo/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace="$install_dir/src/libs/emojibase/packages/data/en/" --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='src/libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
+ynh_replace --match='from "picmo";' --replace='from "src/libs/picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace='src/libs/emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace='/src/libs/emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
 
 ## Download remote assets locally and subsitute remote paths with local ones
 #~ pa_ynh_download_remote_assets --url_format="https://unpkg.com[^']*"                             # https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module
