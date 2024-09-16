@@ -46,16 +46,25 @@ index_html_path="$install_dir/index.html"
 ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain" --file="$index_html_path"
 
 ## Download remote assets locally and subsitute remote paths with local ones
-pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*' \                              # https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
-                              --cmd_filepath='cut -d/ -f5-' \                                            # src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
-                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*' \   # src/libs/bootstrap@*
-                              --event="$(basename $BASH_SOURCE)" \                                       # script's filename
+
+### Jsdelivr
+  #      url format: https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css
+  # filepath format: src/libs/bootstrap@5.3.1/dist/css/bootstrap.min.css
+  # wildcard format: src/libs/bootstrap@*
+pa_ynh_download_remote_assets --url_format='https://cdn.jsdelivr.net[^]*' \
+                              --cmd_filepath='cut -d/ -f5-' \
+                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3 | cut -d@ -f1)@*' \
+                              --event="$(basename $BASH_SOURCE)" \
                               --source_file="$index_html_path"
 
-pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*' \                         # https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
-                              --cmd_filepath='cut -d/ -f6-' \                                            # src/libs/jquery/3.5.1/jquery.min.js
-                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3)/*' \                 # src/libs/jquery/*
-                              --event="$(basename $BASH_SOURCE)" \                                       # script's filename
+### Cloudflare
+  #      url format: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
+  # filepath format: src/libs/jquery/3.5.1/jquery.min.js
+  # wildcard format: src/libs/jquery/*
+pa_ynh_download_remote_assets --url_format='https://cdnjs.cloudflare.com[^"]*' \
+                              --cmd_filepath='cut -d/ -f6-' \
+                              --cmd_path_wildcard='$(echo $filepath | cut -d/ -f-3)/*' \
+                              --event="$(basename $BASH_SOURCE)" \
                               --source_file="$index_html_path"
 
 ## Remove script block containing reference to posthog (analytics)
