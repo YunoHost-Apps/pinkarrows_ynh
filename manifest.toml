@@ -34,6 +34,13 @@ ram.runtime = "20M"
     type = "group"
     default = "visitors"
 
+	[install.watermark]
+	ask = "Watermark"
+	type = "file"
+	accept = ".png"
+	help = "Fill with your own watermark (when the box \"watermark\" is checked, it will be displayed on the bottom right of each picture saved in Pink Arrows)."
+	bind = "__INSTALL_DIR__/assets/watermark.png"
+
 [resources]
 
     [resources.sources]
