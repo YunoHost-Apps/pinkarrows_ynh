@@ -26,7 +26,7 @@ ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?
 #~ echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
 echo -e "let emojiData = [];\nlet messages = [];\nfetch('./src/libs/emojibase/packages/data/en/data.json').then(response => emojiData = response.json());\nfetch('./src/libs/emojibase/packages/data/en/messages.json').then(response => messages = response.json());
 \n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
-#~ sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
+sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 # Remove CDN link for lib emojibase
 ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
