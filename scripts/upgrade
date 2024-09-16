@@ -28,7 +28,6 @@ sed -i '/async function loadEmojiPopup() {/i async function getEmojiData(url) {\
 sed -i "/async function loadEmojiPopup() {/a const emojiData = await getEmojiData('./src/libs/emojibase/packages/data/en/data.json');\nconst messages = await getEmojiData('./src/libs/emojibase/packages/data/en/messages.json');\n" "$install_dir/src/script.js" #append
 sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js" #append
 
-
 # Remove CDN link for lib emojibase
 ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
 
