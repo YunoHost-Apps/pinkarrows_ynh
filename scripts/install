@@ -36,8 +36,7 @@ find "$install_dir/src/libs/emojibase" -mindepth 1 \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \
                                        -delete
-## Change endings in .raw.json to .json to match the CDN's file naming (and what expects the app)
-#~ find "$install_dir/src/libs/emojibase/packages/data/en" -exec rename 's/raw\.json/json/' {} \;
+## Rename files ending in .raw.json to .json in order to match the CDN's file naming (and what expects the app)
 find "$install_dir/src/libs/emojibase/packages/data/en" -depth -name '*.raw.json' -exec sh -c 'f="{}"; mv -- "$f" "${f%.raw.json}.json"' \;
 
 # Modify index.html
@@ -77,8 +76,8 @@ sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $in
 # Modify JS file & libs to use local assets only
 ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
 ynh_replace --match='from "picmo";' --replace='from "../../picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace='../../emojibase/packages/data/en' --file="$install_dir/src/libs/picmo/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace='../../emojibase/packages/data/en' --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace='./src/libs/emojibase/packages/data/en' --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace='./src/libs/emojibase/packages/data/en' --file="$install_dir/src/libs/picmo/dist/index.js"
 
 ## Download remote assets locally and subsitute remote paths with local ones
 #~ pa_ynh_download_remote_assets --url_format="https://unpkg.com[^']*"                             # https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module
