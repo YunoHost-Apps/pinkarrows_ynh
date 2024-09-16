@@ -24,8 +24,7 @@ ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?
 
 ## Add required lines so that picmo library uses local emojibase lib instead of CDN's - https://github.com/joeattardi/picmo/blob/main/docs/docs/02%20-%20usage/06%20-%20emoji-data.md#provided-static-data 
 #~ echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
-echo -e "let emojiData = [];\nlet messages = [];\nfetch('./src/libs/emojibase/packages/data/en/data.json').then(response => emojiData = response.json());\nfetch('./src/libs/emojibase/packages/data/en/messages.json').then(response => messages = response.json());
-\nconsole.log(messages);\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
+echo -e "async function getEmojiData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\nconst emojiData = await getData('./src/libs/emojibase/packages/data/en/data.json');\nconst messages = await getData('./src/libs/emojibase/packages/data/en/messages.json');\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
 sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 # Remove CDN link for lib emojibase
