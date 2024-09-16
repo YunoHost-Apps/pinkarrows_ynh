@@ -40,6 +40,7 @@ ram.runtime = "20M"
 	accept = [".png"]
 	help = "Fill with your own watermark (when the box \"watermark\" is checked, it will be displayed on the bottom right of each picture saved in Pink Arrows)."
 	bind = "__INSTALL_DIR__/assets/watermark.png"
+	optional = true
 
 [resources]
 
