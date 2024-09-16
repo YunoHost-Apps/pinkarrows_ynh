@@ -75,9 +75,9 @@ sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $in
 
 # Modify JS file & libs to use local assets only
 ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
-ynh_replace --match='from "picmo";' --replace='from "../../../picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace='../../../emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
-ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace='../../../emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='from "picmo";' --replace='from "../../picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${e}/${s}' --replace='../../emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
+ynh_replace --match='https://cdn.jsdelivr.net/npm/emojibase-data@${s}/${e}' --replace='../../emojibase/packages/data/en/' --file="$install_dir/src/libs/picmo/dist/index.js"
 
 ## Download remote assets locally and subsitute remote paths with local ones
 #~ pa_ynh_download_remote_assets --url_format="https://unpkg.com[^']*"                             # https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module
