@@ -23,8 +23,10 @@ ynh_replace --match='from "picmo";' --replace='from "../../picmo/dist/index.js"'
 ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
 
 ## Add required lines so that picmo library uses local emojibase lib instead of CDN's - https://github.com/joeattardi/picmo/blob/main/docs/docs/02%20-%20usage/06%20-%20emoji-data.md#provided-static-data 
-#~ echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
-echo -e "async function getEmojiData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\nconst emojiData = await getEmojiData('./src/libs/emojibase/packages/data/en/data.json');\nconst messages = await getEmojiData('./src/libs/emojibase/packages/data/en/messages.json');\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
+#~ echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js" # Better implementations but not yet compatible with all browsers - come back later @https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#browser_compatibility
+#~ echo -e "async function getEmojiData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\nconst emojiData = await getEmojiData('./src/libs/emojibase/packages/data/en/data.json');\nconst messages = await getEmojiData('./src/libs/emojibase/packages/data/en/messages.json');\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
+sed -i 'async function loadEmojiPopup() {/i async function getEmojiData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\n\n' "$install_dir/src/script.js"
+sed -i "async function loadEmojiPopup() {/a const emojiData = await getEmojiData('./src/libs/emojibase/packages/data/en/data.json');\nconst messages = await getEmojiData('./src/libs/emojibase/packages/data/en/messages.json');\n" "$install_dir/src/script.js"
 sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 # Remove CDN link for lib emojibase
