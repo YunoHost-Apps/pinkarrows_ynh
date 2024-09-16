@@ -20,9 +20,15 @@ ynh_setup_source --dest_dir="$install_dir"
 ynh_setup_source --dest_dir="$install_dir/src/libs/picmo" --source_id="picmo"
 ynh_setup_source --dest_dir="$install_dir/src/libs/picmo_popup_picker" --source_id="picmo-popup-picker"
 ynh_replace --match='from "picmo";' --replace='from "../../picmo/dist/index.js"' --file="$install_dir/src/libs/picmo_popup_picker/dist/index.js"
+ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
+
+## Add required lines so that picmo library uses local emojibase lib instead of CDN's - https://github.com/joeattardi/picmo/blob/main/docs/docs/02%20-%20usage/06%20-%20emoji-data.md#provided-static-data 
+echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat $install_dir/src/script.js)" > "$install_dir/src/script.js"
+sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 # Remove CDN link for lib emojibase
 ynh_setup_source --dest_dir="$install_dir/src/libs/emojibase" --source_id="emojibase"
+
 ## Keep only 'emojibase-emojibase-data-15.3.2/packages/data/en/packages/data/en/*'
 find "$install_dir/src/libs/emojibase" -mindepth 1 \
                                        -not -path "$install_dir/src/libs/emojibase/packages" \
@@ -30,6 +36,7 @@ find "$install_dir/src/libs/emojibase" -mindepth 1 \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en" \
                                        -not -path "$install_dir/src/libs/emojibase/packages/data/en/*" \
                                        -delete
+
 ## Rename files ending in .raw.json to .json in order to match the CDN's file naming (and what expects the app)
 find "$install_dir/src/libs/emojibase/packages/data/en" -depth -name '*.raw.json' -exec sh -c 'f="{}"; mv -- "$f" "${f%.raw.json}.json"' \;
 
@@ -66,14 +73,6 @@ sed -i '/<script>/,/<\/script>/ { /posthog/!b; :a; N; /<\/script>/!ba; d; }' $in
                                                                                                 # '{ /posthog/!b;' jumps to the end of the block if the line does not contain the string 'posthog'.
                                                                                                 # ':a; N; /<\/script>/!ba;' is a loop that appends the next line to the pattern space until it finds '</script>'. Without it, the command would leave some lines the block not containing 'posthog'.
                                                                                                 # 'd; }' deletes the entire block.
-
-# Modify src/script.js
-## Local call to picmo popup picker
-ynh_replace --match='https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module' --replace='./libs/picmo_popup_picker/dist/index.js' --file="$install_dir/src/script.js"
-
-## Add required lines so that picmo library uses local emojibase lib instead of CDN's - https://github.com/joeattardi/picmo/blob/main/docs/docs/02%20-%20usage/06%20-%20emoji-data.md#provided-static-data 
-echo -e "import emojiData from './libs/emojibase/packages/data/en/data.json' with { type: 'json' };\nimport messages from './libs/emojibase/packages/data/en/messages.json' with { type: 'json' };\n$(cat "$install_dir/src/script.js")" > "$install_dir/src/script.js"
-sed -i '/emojiPicker = createPopup({/a \ \ \ \ emojiData,\n    messages,' "$install_dir/src/script.js"
 
 chown -R "$app:www-data" "$install_dir"
 

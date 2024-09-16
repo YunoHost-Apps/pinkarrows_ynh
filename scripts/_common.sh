@@ -5,9 +5,12 @@
 #=================================================
 
 # Download remote assets locally and subsitute remote paths with local ones
-#
-#
-#
+#   url_format: 		(string) regex that matches URL to look at in the $source_file
+#   cmd_filepath: 		(string) bash command that removes "https://domain.tld/" from the the URL to form the filepath   
+#   cmd_path_wildcard: 	(string) bash command that replaces the end of the filepath with a wildcard to match recursively the library's directory 
+#   event: 				(string) 'update' or 'install' to get the execution's context 
+# 	source_file: 		(string) path to the file to read & modify
+####
 pa_ynh_download_remote_assets() {
     # ============ Argument parsing =============
     local -A args_array=([u]=url_format= [f]=cmd_filepath= [k]=cmd_path_wildcard= [e]=event= [s]=source_file=)
