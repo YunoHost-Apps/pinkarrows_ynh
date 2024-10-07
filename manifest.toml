@@ -57,6 +57,7 @@ ram.runtime = "15M"
     sha256 = "9d4f5509d1ae917b48c147f962a5309d6b74833ae24193443d5200609da7f4ad"
     autoupdate.upstream = "https://github.com/milesj/emojibase"
     autoupdate.strategy = "latest_github_release"
+    autoupdate.version_regex = "^emojibase-data@(.*)$"
     
     [resources.system_user]
 
