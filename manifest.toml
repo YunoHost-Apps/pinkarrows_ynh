@@ -3,7 +3,7 @@ id = "pinkarrows"
 name = "Pink Arrows"
 description.en = "Lightweight images/screenshot annotation tool"
 description.fr = "Outil léger pour l'annotation d'images ou de captures d'écran"
-version = "1.0~ynh1"
+version = "2024.08.23~ynh1"
 maintainers = ["oleole39"]
 
 [upstream]
@@ -39,8 +39,8 @@ ram.runtime = "15M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/robbalian/pinkarrows/archive/bd673c14cd2a069fdfd1bcf592ebaee1d7222f6b.zip"
-    sha256 = "4d21f3d0fcf3193f6891f138e6b3f6f5900d840755282d48c8fc0ab880743c2d"
+    url = "https://github.com/robbalian/pinkarrows/archive/bd673c14cd2a069fdfd1bcf592ebaee1d7222f6b.tar.gz"
+    sha256 = "7d20730e5aa94d8b370fa271de1dc49d15999e50d09e5e7cb03499d2111fccd5"
     autoupdate.upstream = "https://github.com/robbalian/pinkarrows"
     autoupdate.strategy = "latest_github_commit"
 
@@ -53,8 +53,8 @@ ram.runtime = "15M"
     sha256 = "dfa3f631df9b96b5073a620876a4147175e3222af8d652f78c0960caf83bc57a"
     
     [resources.sources.emojibase]
-    url = "https://github.com/milesj/emojibase/archive/refs/tags/emojibase-data@15.3.2.zip"
-    sha256 = "9d4f5509d1ae917b48c147f962a5309d6b74833ae24193443d5200609da7f4ad"
+    url = "https://github.com/milesj/emojibase/archive/refs/tags/emojibase-data@15.3.2.tar.gz"
+    sha256 = "58c7f3f4790bfd3aca72299c92eaa2077056e62517b8a80a7bb843cccdf99021"
     autoupdate.upstream = "https://github.com/milesj/emojibase"
     autoupdate.strategy = "latest_github_release"
     autoupdate.version_regex = "^emojibase-data@(.*)$"
