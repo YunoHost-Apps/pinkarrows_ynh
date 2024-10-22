@@ -21,7 +21,7 @@ Lightweight and intuitive app that enables annotating images or screen captures 
 It runs in-browser and does not store any user data on the server (apart from the access log as per your YNH configuration).
 
 
-**Geleverde versie:** 1.0~ynh1
+**Geleverde versie:** 1.0~ynh2
 
 **Demo:** <https://pinkarrows.app>
 
