@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Pink Arrows for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/pinkarrows.svg)](https://ci-apps.yunohost.org/ci/apps/pinkarrows/) ![Working status](https://ci-apps.yunohost.org/ci/badges/pinkarrows.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/pinkarrows.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/pinkarrows)](https://ci-apps.yunohost.org/ci/apps/pinkarrows/)
+![Working status](https://apps.yunohost.org/badge/state/pinkarrows)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/pinkarrows)
 
 [![Install Pink Arrows with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=pinkarrows)
 
@@ -21,7 +23,7 @@ Lightweight and intuitive app that enables annotating images or screen captures 
 It runs in-browser and does not store any user data on the server (apart from the access log as per your YNH configuration).
 
 
-**Shipped version:** 2024.08.23~ynh1
+**Shipped version:** 2024.11.19~ynh1
 
 **Demo:** <https://pinkarrows.app>
 
