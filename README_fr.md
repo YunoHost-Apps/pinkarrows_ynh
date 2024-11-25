@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-Pinkarrow est une application légère et intuitive qui permet d'annoter images ou captures d'écran en y ajoutant du texte et des éléments graphiques. Elle s'execute dans le navigateur du visiteur et aucune donnée utilisateur n'est stockée sur le serveur (hormis les logs d'accès selon votre configuration YNH).
+Pink Arrows est une application légère et intuitive qui permet d'annoter images ou captures d'écran en y ajoutant du texte et des éléments graphiques. Elle s'execute dans le navigateur du visiteur et aucune donnée utilisateur n'est stockée sur le serveur (hormis les logs d'accès selon votre configuration YNH).
 
 
 **Version incluse :** 2024.11.19~ynh1
