@@ -10,7 +10,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-
 ynh_script_progression "Setting up source files..."
 
 # Pink Arrows source
@@ -81,8 +80,8 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-
 ynh_script_progression "Upgrading system configurations related to $app..."
+
 ynh_config_add_nginx
 
 #=================================================

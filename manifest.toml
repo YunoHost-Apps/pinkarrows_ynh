@@ -3,7 +3,9 @@ id = "pinkarrows"
 name = "Pink Arrows"
 description.en = "Lightweight images/screenshot annotation tool"
 description.fr = "Outil léger pour l'annotation d'images ou de captures d'écran"
+
 version = "2024.11.19~ynh1"
+
 maintainers = ["oleole39"]
 
 [upstream]
@@ -16,8 +18,10 @@ yunohost = ">= 11.2.30"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
-ldap = "not_relevant"
-sso = "not_relevant"
+
+ldap = false
+sso = false
+
 disk = "8M"
 ram.build = "10M"
 ram.runtime = "15M"
@@ -62,8 +66,7 @@ ram.runtime = "15M"
     [resources.system_user]
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.permissions]
     main.url = "/"
-
-    [resources.ports]
