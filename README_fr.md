@@ -23,7 +23,7 @@ Application légère et intuitive qui permet d'annoter images ou captures d'écr
 Elle s'execute dans le navigateur du visiteur et aucune donnée utilisateur n'est stockée sur le serveur (hormis les logs d'accès selon votre configuration YNH).
 
 
-**Version incluse :** 2024.11.19~ynh1
+**Version incluse :** 2024.11.19~ynh2
 
 **Démo :** <https://pinkarrows.app>
 

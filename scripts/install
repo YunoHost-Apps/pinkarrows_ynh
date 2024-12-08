@@ -48,6 +48,9 @@ index_html_path="$install_dir/index.html"
 ## Replace upstream canonical link with YNH app domain's  
 ynh_replace --match="https://www.pinkarrows.app" --replace="https://$domain$path" --file="$index_html_path"
 
+## Fix absolute paths
+ynh_replace --match='href="/assets' --replace='href="./assets' --file="$index_html_path"
+
 ## Download remote assets locally and subsitute remote paths with local ones
 
 ### Jsdelivr
