@@ -32,7 +32,7 @@ pa_ynh_download_remote_assets() {
         if [ ! -f "$install_dir/$filepath" ]; then
             if [ $event = 'upgrade' ] && [[ -n $cmd_path_wildcard ]] ; then 
                 # Remove asset's old version
-                find "$install_dir/src/libs" -name $cmd_path_wildcard -type d -exec ynh_safe_rm {} +          
+                find "$install_dir/src/libs" -name "$cmd_path_wildcard" -type d -exec ynh_safe_rm {} +          
             fi
             mkdir -p "$(dirname $install_dir/$filepath)" # make sure directory exists
             curl -L -s -o "$install_dir/$filepath" $url
