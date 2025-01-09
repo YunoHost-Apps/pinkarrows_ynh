@@ -14,7 +14,7 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Setting up source files..."
 
 # Pink Arrows source
-ynh_setup_source --dest_dir="$install_dir" --keep="assets/watermark.png"
+ynh_setup_source --dest_dir="$install_dir" --keep="assets/watermark.png" --full-replace
 
 # Remove CDN link for libs picmo & picmo_popup_picker
 ynh_setup_source --dest_dir="$install_dir/src/libs/picmo" --source_id="picmo"
