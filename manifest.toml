@@ -3,7 +3,7 @@ id = "pinkarrows"
 name = "Pink Arrows"
 description.en = "Lightweight images/screenshot annotation tool"
 description.fr = "Outil léger pour l'annotation d'images ou de captures d'écran"
-version = "2026.03.04~ynh1"
+version = "2026.08.15~ynh1"
 maintainers = ["oleole39"]
 
 [upstream]
@@ -39,8 +39,8 @@ ram.runtime = "15M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/robbalian/pinkarrows/archive/98143c46193379d658e8d7dfcb6a5c9dca45080c.tar.gz"
-    sha256 = "1fb7be2930b9b6b1ecbdb0ba44e68c44ffacf3dc3e4e7bec97efbd89eb9e95ed"
+    url = "https://github.com/robbalian/pinkarrows/archive/88d7eea6206ba5afb492c3d92ff330772a8b8910.tar.gz"
+    sha256 = "38c1f9fd132fa4ac7f4da199c9ededbf016ecbd4fc08c557d354ade78fe88742"
     autoupdate.upstream = "https://github.com/robbalian/pinkarrows"
     autoupdate.strategy = "latest_github_commit"
 
