@@ -3,7 +3,7 @@ id = "pinkarrows"
 name = "Pink Arrows"
 description.en = "Lightweight images/screenshot annotation tool"
 description.fr = "Outil léger pour l'annotation d'images ou de captures d'écran"
-version = "2026.09.01~ynh1"
+version = "2026.09.01~ynh2"
 maintainers = ["oleole39"]
 
 [upstream]
@@ -53,8 +53,8 @@ ram.runtime = "15M"
     sha256 = "dfa3f631df9b96b5073a620876a4147175e3222af8d652f78c0960caf83bc57a"
     
     [resources.sources.emojibase]
-    url = "https://github.com/milesj/emojibase/archive/refs/tags/emojibase-data@17.0.0.tar.gz"
-    sha256 = "5e9efc299a1d5574b226fa769bb2161185cfd6774f688480bff4af9ea78746b0"
+    url = "https://github.com/milesj/emojibase/archive/refs/tags/emojibase-data@18.0.0.tar.gz"
+    sha256 = "52f41ddb5ac35c1eb7c02c5c3bbfbe118a15df35a6c2ba791210e5f98afddfa8"
     autoupdate.upstream = "https://github.com/milesj/emojibase"
     autoupdate.strategy = "latest_github_release"
     autoupdate.version_regex = "^emojibase-data@(.*)$"
